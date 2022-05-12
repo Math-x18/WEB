@@ -1,22 +1,24 @@
-<?php include_once('config.php');
+<?php require_once('config.php');
 
-    if(!empty($_GET['CodigoProduto']))
+if(!empty($_GET['CodigoProduto']))
+{
+    
+    
+    $Codigo = $_GET['CodigoProduto'];
+    
+    
+    $sqlSelect = "SELECT *  FROM produto WHERE CodigoProduto=$Codigo";
+    
+    $result = $conexao->query($sqlSelect);
+    
+    if($result->num_rows > 0)
     {
-        
-
-        $Codigo = $_GET['CodigoProduto'];
-
-        $sqlSelect = "SELECT *  FROM produto WHERE CodigoProduto=$Codigo";
-
-        $result = $conexao->query($sqlSelect);
-
-        if($result->num_rows > 0)
-        {
-            $sqlDelete = "DELETE FROM produto WHERE CodigoProduto=$Codigo";
-            $resultDelete = $conexao->query($sqlDelete);
-        }
+        $sqlDelete = "DELETE FROM produto WHERE CodigoProduto=$Codigo";
+        $resultDelete = $conexao->query($sqlDelete);
     }
-    header('Location: sistema.php');
+}
+    
+header('Location: cadastro.php');
 
    
 ?>
