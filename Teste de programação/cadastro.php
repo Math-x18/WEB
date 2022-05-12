@@ -1,4 +1,4 @@
-<?php include_once('config.php');
+<?php require_once('config.php');
 
     if(isset($_POST['submit'])){
 
@@ -108,10 +108,8 @@
                 </div>
                     <br>
                     <input type="submit" name="submit" id="submit">
-
-            
+            </fieldset>
         </form>
-
         <div class="m-5">
             <table class="table">
                 <br>
@@ -124,7 +122,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                 <?php 
                         while($dado = $con->fetch_array())
                         {
@@ -132,20 +129,17 @@
                             echo "<td>".$dado['CodigoProduto']."</td>";
                             echo "<td></td><td>".$dado['DescricaoProduto']."</td>";
                             echo  "<td>
-                                        <a href=href='delete.php?id=$dado[CodigoProduto]'>
+                                        <a href='/delete.php?CodigoProduto=" . $dado['CodigoProduto'] . "'>
                                             <button>Excluir</button>
                                         </a>
                                 </td>";
                             echo  "</tr>" ;
                         }
+                        $con->close();
                     ?>
-
                 </tbody>
             </table>
         </div>
-        </fieldset>
     </div>
-    
-    
 </body>
 </html>
